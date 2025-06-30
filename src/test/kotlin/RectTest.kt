@@ -29,6 +29,17 @@ class RectangleTest {
     }
 
     @Test
+    fun `should return same two points`() {
+        val p1 = Point(1.0, 1.0)
+        val p2 = Point(4.0, 4.0)
+        val square = Square(p1, p2)
+
+        val points = square.getPoints()
+        assertTrue(points.contains(p1))
+        assertTrue(points.contains(p2))
+    }
+
+    @Test
     fun `should throw exception for zero-area rectangle`() {
         val p1 = Point(1.0, 1.0)
         val p2 = Point(1.0, 1.0)

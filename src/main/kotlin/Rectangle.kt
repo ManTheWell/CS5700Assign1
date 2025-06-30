@@ -1,8 +1,8 @@
 import kotlin.math.sqrt
 
-class Rectangle(var point1: Point, var point2: Point) {
+open class Rectangle(var point1: Point, var point2: Point) {
     init {
-        require(!(point1.getX() == point2.getX() && point1.getY() == point2.getY())) {
+        require(!(point1.getX() == point2.getX() || point1.getY() == point2.getY())) {
             "A rectangle cannot have an area of zero (points must be different)"
         }
     }
