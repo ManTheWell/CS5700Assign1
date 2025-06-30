@@ -22,7 +22,7 @@ class Line (private val point1: Point, private val point2: Point) {
     }
 
     fun getLength(): Double {
-        return sqrt( (point1.getX() - point2.getX()).pow(2)  + (point1.getY() - point2.getY()).pow(2) )
+        return sqrt((point1.getX() - point2.getX()).pow(2)  + (point1.getY() - point2.getY()).pow(2) )
     }
 
     fun move(deltaX: Double, deltaY: Double) {
