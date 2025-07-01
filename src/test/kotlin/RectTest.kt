@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class RectangleTest {
+class RectTest {
 
     @Test
     fun `should calculate correct area`() {
