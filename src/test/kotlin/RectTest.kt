@@ -29,14 +29,15 @@ class RectangleTest {
     }
 
     @Test
-    fun `should return same two points`() {
-        val p1 = Point(1.0, 1.0)
-        val p2 = Point(4.0, 4.0)
-        val square = Square(p1, p2)
+    fun `should return the same two points`() {
+        val p1 = Point(2.0, 3.0)
+        val p2 = Point(5.0, 7.0)
+        val rect = Rectangle(p1, p2)
 
-        val points = square.getPoints()
+        val points = rect.getPoints()
         assertTrue(points.contains(p1))
         assertTrue(points.contains(p2))
+        assertEquals(2, points.size)
     }
 
     @Test

@@ -4,50 +4,44 @@ import org.junit.jupiter.api.Test
 class SquareTest {
 
     @Test
-    fun `should create valid square and calculate area`() {
-        val p1 = Point(2.0, 2.0)
-        val p2 = Point(5.0, 5.0)
-        val square = Square(p1, p2)
+    fun `should create square from origin and side length`() {
+        val origin = Point(1.0, 1.0)
+        val side = 3.0
+        val square = Square(origin, side)
 
-        assertEquals(9.0, square.getArea(), 0.0001)
+        val points = square.getPoints()
+        val p1 = points[0]
+        val p2 = points[1]
+
+        assertEquals(1.0, p1.getX())
+        assertEquals(1.0, p1.getY())
+        assertEquals(4.0, p2.getX()) // 1.0 + 3.0
+        assertEquals(4.0, p2.getY())
+    }
+
+    @Test
+    fun `should calculate correct area`() {
+        val square = Square(Point(0.0, 0.0), 5.0)
+        assertEquals(25.0, square.getArea())
     }
 
     @Test
     fun `should move square correctly`() {
-        val p1 = Point(0.0, 0.0)
-        val p2 = Point(3.0, 3.0)
-        val square = Square(p1, p2)
-
-        square.move(2.0, 2.0)
-        val movedPoints = square.getPoints()
-
-        assertEquals(2.0, movedPoints[0].getX())
-        assertEquals(2.0, movedPoints[0].getY())
-        assertEquals(5.0, movedPoints[1].getX())
-        assertEquals(5.0, movedPoints[1].getY())
-    }
-
-    @Test
-    fun `should return same two points`() {
-        val p1 = Point(1.0, 1.0)
-        val p2 = Point(4.0, 4.0)
-        val square = Square(p1, p2)
+        val square = Square(Point(2.0, 2.0), 2.0)
+        square.move(1.0, 1.0)
 
         val points = square.getPoints()
-        assertTrue(points.contains(p1))
-        assertTrue(points.contains(p2))
+        assertEquals(3.0, points[0].getX())
+        assertEquals(3.0, points[0].getY())
+        assertEquals(5.0, points[1].getX())
+        assertEquals(5.0, points[1].getY())
     }
 
     @Test
-    fun `should throw exception for unequal side lengths`() {
-        val p1 = Point(0.0, 0.0)
-        val p2 = Point(4.0, 3.0) // width != height
-
-        val exception = assertThrows(IllegalArgumentException::class.java) {
-            Square(p1, p2)
+    fun `should throw exception if side length is zero`() {
+        val ex = assertThrows(IllegalArgumentException::class.java) {
+            Square(Point(0.0, 0.0), 0.0)
         }
-
-        assertTrue(exception.message!!.contains("equal width and height"))
+        assertTrue(ex.message!!.contains("area of zero", ignoreCase = true))
     }
 }
-
